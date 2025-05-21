@@ -2,7 +2,7 @@
 [TMDB API](https://developer.themoviedb.org/reference/intro/getting-started)を使い、映画を検索・一覧表示できるアプリ
 映画を一覧表示する画面を一つ実装する。
 
-## 仕様
+## タスク
 <!-- - APIキーはブラウザに露呈しないように実装すること -->
 <!-- - 映画は、以下の要素で構成されるカード型UIを4カラムに並べた一覧表示とする。
     - 映画タイトル
@@ -15,6 +15,7 @@
     <!-- - キーワード検索中のもっと見るボタン押下 -->
     - キーワード検索切り分け
     - リリース年：2020年〜2024年のプルダウン
+- 先にデプロイ
 - 0件表示対応
     - キーワードが入力されていない（初期状態）：キーワード入力を促す文言
     - 検索結果0件：該当する映画がなかったことを知らせる文言
@@ -35,6 +36,29 @@
 2. なにかしらのホスティングサービスにデプロイし、インターネット上で閲覧できるようにする。
 3. 1と2のURLをFLAT人事部宛（recruit@wd-flat.com）に連絡する。
 
-# TMDB
+## TMDB
 ryogoiimura
 Iimuraryo5
+
+## object
+{
+    "adult": false,
+    "backdrop_path": "/2Nti3gYAX513wvhp8IiLL6ZDyOm.jpg",
+    "genre_ids": [
+        10751,
+        35,
+        12,
+        14
+    ],
+    "id": 950387,
+    "original_language": "en",
+    "original_title": "A Minecraft Movie",
+    "overview": "謎のキューブ”の力で、マイクラワールドに転送された4人の仲間たち。そこは考えたモノを何でも作れる不思議な世界・・・だけど、夜になると四角いモンスターたちが襲いかかり、世界はとんでもないことに!? スティーブの力を借りて、4人はこの冒険をどうサバイバルするのか!?",
+    "popularity": 821.0826,
+    "poster_path": "/83bOe4KLTLMgtRXIGpd5ywTNbS6.jpg",
+    "release_date": "2025-03-31",
+    "title": "マインクラフト／ザ・ムービー",
+    "video": false,
+    "vote_average": 6.521,
+    "vote_count": 1302
+}
