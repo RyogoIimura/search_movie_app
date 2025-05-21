@@ -17,7 +17,7 @@ const Movie = (props: ComponentsMovieTypes) => {
       <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
 
       {/* リリース年月日 */}
-      <p>{ typeof movie.release_date }</p>
+      <p>{ movie.release_date }</p>
 
       {/* 映画ジャンル（複数表示） */}
       <p>
