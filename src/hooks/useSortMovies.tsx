@@ -6,6 +6,8 @@ export const useSortMovies = (
   date: string
 ) => {
   if( keyWordRef.current ){
+    console.log(Boolean(keyWordRef.current.value),Boolean(date))
+
     // どちらもない場合
     if( !keyWordRef.current.value && date === '' ){
       console.log('どちらもない場合');

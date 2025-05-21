@@ -15,6 +15,7 @@ function App() {
     const newMovies = await getMovies(key, count);
     setMovies([...movies, ...newMovies]);
     setCount(count+1);
+    setSortMovies(useSortMovies(movies,keyWordRef,releaseDate))
   }
   const loadmovieGenre = async () => {
     const movieGenre = await getMovieCategory(key);
