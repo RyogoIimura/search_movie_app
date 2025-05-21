@@ -2,11 +2,11 @@ import { MovieType, MovieGenreType } from "../types/types";
 
 type ComponentsMovieTypes = {
   movie: MovieType,
-  moviesGenre: MovieGenreType[]
+  movieGenre: MovieGenreType[]
 }
 
 const Movie = (props: ComponentsMovieTypes) => {
-  const { movie, moviesGenre } = props
+  const { movie, movieGenre } = props
 
   return (
     <>
@@ -22,7 +22,7 @@ const Movie = (props: ComponentsMovieTypes) => {
       {/* 映画ジャンル（複数表示） */}
       <p>
         { movie.genre_ids.map((id: number, i: number) => (
-          moviesGenre.map((genre: MovieGenreType, index: number) => (
+          movieGenre.map((genre: MovieGenreType, index: number) => (
             genre.id === id && (
               <span key={index}>
                 { i !== 0 && ('、')}
