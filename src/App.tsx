@@ -64,14 +64,23 @@ function App() {
 
       <ul>
         { sortMovies.length === 0 ? (
-          movies.map((movie,index) => (
-            <li key={index}>
-              <Movie
-                movie={movie}
-                movieGenre={movieGenre}
-              />
-            </li>
-          ))
+          !keyWordRef.current || !keyWordRef.current.value && releaseDate === '' ? (
+            <>
+              <p>キーワードを入力してください</p>
+              {
+                movies.map((movie,index) => (
+                  <li key={index}>
+                    <Movie
+                      movie={movie}
+                      movieGenre={movieGenre}
+                    />
+                  </li>
+                ))
+              }
+            </>
+          ) : (
+            <p>0件です</p>
+          )
         ) : (
           sortMovies.map((searchMovie,index) => (
             <li key={index}>
