@@ -1,6 +1,6 @@
 import { MovieType } from "../types/types";
 
-export const useSortMovies = (
+export const sortMoviesFunc = (
   movies: MovieType[],
   keyWordRef: React.RefObject<HTMLInputElement | null>,
   date: string

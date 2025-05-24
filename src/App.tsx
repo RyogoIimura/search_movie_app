@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { getMovies, getMovieCategory } from "./api/api";
 import { MovieType, MovieGenreType } from "./types/types";
-import Movie from "./components/movie";
-import { useSortMovies } from "./hooks/useSortMovies";
+import Movie from "./components/Movie";
+import { sortMoviesFunc } from "./hooks/sortMoviesFunc";
 
 function App() {
   const key = import.meta.env.VITE_API_KEY;
@@ -11,11 +11,11 @@ function App() {
   const [movieGenre, setmovieGenre] = useState<MovieGenreType[]>([]);
   const [count, setCount] = useState<number>(1);
 
-  const loadMoview = async () => {
+  const loadMovie = async () => {
     const newMovies = await getMovies(key, count);
     setMovies([...movies, ...newMovies]);
     setCount(count+1);
-    setSortMovies(useSortMovies(movies,keyWordRef,releaseDate))
+    // setSortMovies(sortMoviesFunc(movies,keyWordRef,releaseDate))
   }
   const loadmovieGenre = async () => {
     const movieGenre = await getMovieCategory(key);
@@ -23,7 +23,7 @@ function App() {
   }
 
   useEffect(() => {
-    loadMoview();
+    loadMovie();
     loadmovieGenre();
   }, [key]);
 
@@ -32,6 +32,10 @@ function App() {
   const keyWordRef = useRef<HTMLInputElement | null>(null);
   // 公開年検索
   const [releaseDate,setReleaseDate] = useState<string>('');
+
+  useEffect(() => {
+    setSortMovies(sortMoviesFunc(movies, keyWordRef, releaseDate));
+  }, [movies, releaseDate]);
 
   // useEffect(() => console.log(movies), [movies]);
   // useEffect(() => console.log(movieGenre), [movieGenre]);
@@ -42,7 +46,7 @@ function App() {
 
       <div>
         <input type="text" ref={keyWordRef} />
-        <button type="button" onClick={() => setSortMovies(useSortMovies(movies,keyWordRef,releaseDate))}>
+        <button type="button" onClick={() => setSortMovies(sortMoviesFunc(movies,keyWordRef,releaseDate))}>
           キーワード検索
         </button>
       </div>
@@ -51,7 +55,7 @@ function App() {
         name="release_date"
         onChange={(e) => {
           setReleaseDate(e.target.value);
-          setSortMovies(useSortMovies(movies,keyWordRef,e.target.value))
+          setSortMovies(sortMoviesFunc(movies,keyWordRef,e.target.value))
         }}
       >
         <option value="">公開年</option>
@@ -93,7 +97,7 @@ function App() {
         )}
       </ul>
 
-      <button onClick={() => loadMoview()} >
+      <button onClick={() => loadMovie()} >
         もっと見る
       </button>
     </div>
