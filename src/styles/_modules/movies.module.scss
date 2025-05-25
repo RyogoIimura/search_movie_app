@@ -58,7 +58,7 @@
   }
   .anotation {
     font-size: vw(24);
-    color: #555555;
+    color: #555;
     margin-top: vw(30);
   }
   .more_button_wrapper {
@@ -177,4 +177,30 @@
   }
 
   // hover
+  .movies {
+    .search_wrapper {
+      .keyword {
+        .keyword_button {
+          &:hover {
+            background-color: #555;
+          }
+        }
+      }
+      .years {
+        &::before {
+          cursor: pointer;
+        }
+        .years_select {
+          cursor: pointer;
+        }
+      }
+    }
+    .more_button_wrapper {
+      .more_button {
+        &:hover {
+          background-color: #555;
+        }
+      }
+    }
+  }
 }
