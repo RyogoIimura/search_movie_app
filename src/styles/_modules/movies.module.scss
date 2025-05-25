@@ -4,7 +4,6 @@
   width: vw(700);
   margin: 0 auto;
   padding: vw(100) 0 vw(200);
-  overflow: hidden;
 
   .title {
     font-size: vw(50);
@@ -20,21 +19,20 @@
       justify-content: space-between;
 
       .keyword_input {
-        width: 70%;
+        width: 76%;
         background-color: $gray;
         padding: 0 vw(20);
       }
       .keyword_button {
-        width: vw(150);
+        width: 20%;
         font-size: vw(26);
         text-align: center;
         background-color: #000;
         color: #fff;
-        border-radius: 8%;
       }
     }
     .years {
-      width: 70%;
+      width: 76%;
       margin-top: vw(30);
       position: relative;
 
@@ -76,7 +74,6 @@
       text-align: center;
       background-color: #000;
       color: #fff;
-      border-radius: 8%;
     }
   }
 
@@ -84,7 +81,6 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     
     .movie {
       width: 47%;
@@ -92,15 +88,92 @@
       padding: vw(30) 0 vw(70);
       margin-top: vw(100);
       background-color: $gray;
+
+      &:nth-child(even){
+        margin-left: 6%;
+      }
+    }
+    .zero {
+      font-size: vw(30);
+      margin-top: vw(70);
     }
   }
 }
 
-// アニメーション
-
 // PC
 @media screen and (min-width: ($BREAKPOINT)){
   .movies {
+    width: 95%;
+    max-width: 1600px;
+    padding: 100px 0 200px;
+
+    .title {
+      font-size: 60px;
+    }
+    .search_wrapper {
+      display: flex;
+      margin-top: 40px;
+
+      .keyword {
+        width: 500px;
+        height: 50px;
+
+        .keyword_input {
+          padding: 0 10px;
+        }
+        .keyword_button {
+          font-size: 18px;
+        }
+      }
+      .years {
+        width: 200px;
+        margin-top: 0;
+        margin-left: 60px;
+
+        &::before {
+          width: 10px;
+          height: 10px;
+          right: 15px;
+        }
+        .years_select {
+          height: 50px;
+          font-size: 18px;
+        }
+      }
+    }
+    .anotation {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .more_button_wrapper {
+      margin-top: 50px;
+
+      .more_button {
+        width: 150px;
+        height: 50px;
+        font-size: 18px;
+      }
+    }
+
+    .movies_wrapper {
+      .movie {
+        width: 30%;
+        padding: 30px 5px 70px;
+        margin-top: 70px;
+        margin-left: 5%;
+
+        &:nth-child(even){
+          margin-left: 5%;
+        }
+        &:nth-child(3n + 1){
+          margin-left: 0;
+        }
+      }
+      .zero {
+        font-size: 22px;
+        margin-top: 50px;
+      }
+    }
   }
 
   // hover

@@ -89,7 +89,7 @@ function App() {
               }
             </>
           ) : (
-            <p>0件です</p>
+            <p className={styles.zero}>0件です</p>
           )
         ) : (
           sortMovies.map((searchMovie,index) => (

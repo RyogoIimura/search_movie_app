@@ -28,10 +28,22 @@
   line-height: 1.4em;
 }
 
-// アニメーション
-
 // PC
 @media screen and (min-width: ($BREAKPOINT)){
+  .movie_title {
+    font-size: 18px;
+  }
+  .movie_img_container {
+    margin-top: 30px;
+  }
+  .movie_date {
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  .movie_genre {
+    font-size: 18px;
+    margin-top: 10px;
+  }
 
   // hover
 }
