@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import { getMovies, getMovieCategory } from "./api/api";
-import { MovieType, MovieGenreType } from "./types/types";
-import Movie from "./components/Movie";
-import { sortMoviesFunc } from "./hooks/sortMoviesFunc";
+import { getMovies, getMovieCategory } from './api/api';
+import { MovieType, MovieGenreType } from './types/types';
+import Movie from './components/Movie';
+import { sortMoviesFunc } from './hooks/sortMoviesFunc';
 import styles from './styles/_modules/movies.module.scss';
 
 function App() {
@@ -15,12 +15,12 @@ function App() {
   const loadMovie = async () => {
     const newMovies = await getMovies(key, count);
     setMovies([...movies, ...newMovies]);
-    setCount(count+1);
-  }
+    setCount(count + 1);
+  };
   const loadmovieGenre = async () => {
     const movieGenre = await getMovieCategory(key);
     setmovieGenre(movieGenre);
-  }
+  };
   useEffect(() => {
     loadMovie();
     loadmovieGenre();
@@ -29,7 +29,7 @@ function App() {
   // キーワード検索、公開年検索
   const [sortMovies, setSortMovies] = useState<MovieType[]>([]);
   const keyWordRef = useRef<HTMLInputElement | null>(null);
-  const [releaseDate,setReleaseDate] = useState<string>('');
+  const [releaseDate, setReleaseDate] = useState<string>('');
   useEffect(() => {
     setSortMovies(sortMoviesFunc(movies, keyWordRef, releaseDate));
   }, [movies, releaseDate]);
@@ -48,7 +48,9 @@ function App() {
           <button
             className={`${styles.keyword_button} ${styles.notoJpB}`}
             type="button"
-            onClick={() => setSortMovies(sortMoviesFunc(movies,keyWordRef,releaseDate))}
+            onClick={() =>
+              setSortMovies(sortMoviesFunc(movies, keyWordRef, releaseDate))
+            }
           >
             検索
           </button>
@@ -69,42 +71,43 @@ function App() {
         </div>
       </div>
 
-      {!keyWordRef.current || !keyWordRef.current.value && releaseDate === '' ? (
-        <p className={styles.anotation}>キーワード、または公開年を指定してください</p>
-      ) : ''}
+      {!keyWordRef.current ||
+      (!keyWordRef.current.value && releaseDate === '') ? (
+        <p className={styles.anotation}>
+          キーワード、または公開年を指定してください
+        </p>
+      ) : (
+        ''
+      )}
 
       <ul className={styles.movies_wrapper}>
-        { sortMovies.length === 0 ? (
-          !keyWordRef.current || !keyWordRef.current.value && releaseDate === '' ? (
+        {sortMovies.length === 0 ? (
+          !keyWordRef.current ||
+          (!keyWordRef.current.value && releaseDate === '') ? (
             <>
-              {
-                movies.map((movie,index) => (
-                  <li className={styles.movie} key={index}>
-                    <Movie
-                      movie={movie}
-                      movieGenre={movieGenre}
-                    />
-                  </li>
-                ))
-              }
+              {movies.map((movie, index) => (
+                <li className={styles.movie} key={index}>
+                  <Movie movie={movie} movieGenre={movieGenre} />
+                </li>
+              ))}
             </>
           ) : (
             <p className={styles.zero}>0件です</p>
           )
         ) : (
-          sortMovies.map((searchMovie,index) => (
+          sortMovies.map((searchMovie, index) => (
             <li className={styles.movie} key={index}>
-              <Movie
-                movie={searchMovie}
-                movieGenre={movieGenre}
-              />
+              <Movie movie={searchMovie} movieGenre={movieGenre} />
             </li>
           ))
         )}
       </ul>
 
       <div className={styles.more_button_wrapper}>
-        <button className={`${styles.more_button} ${styles.notoJpB}`} onClick={() => loadMovie()} >
+        <button
+          className={`${styles.more_button} ${styles.notoJpB}`}
+          onClick={() => loadMovie()}
+        >
           もっと見る
         </button>
       </div>
@@ -112,4 +115,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
