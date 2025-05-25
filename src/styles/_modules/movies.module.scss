@@ -1,0 +1,107 @@
+@use '../_base/setting' as *;
+
+.movies {
+  width: vw(700);
+  margin: 0 auto;
+  padding: vw(100) 0 vw(200);
+  overflow: hidden;
+
+  .title {
+    font-size: vw(50);
+  }
+  .search_wrapper {
+    width: 100%;
+    margin-top: vw(70);
+
+    .keyword {
+      width: 100%;
+      height: vw(70);
+      display: flex;
+      justify-content: space-between;
+
+      .keyword_input {
+        width: 70%;
+        background-color: $gray;
+        padding: 0 vw(20);
+      }
+      .keyword_button {
+        width: vw(150);
+        font-size: vw(26);
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+        border-radius: 8%;
+      }
+    }
+    .years {
+      width: 70%;
+      margin-top: vw(30);
+      position: relative;
+
+      &::before {
+        content: '';
+        width: vw(10);
+        height: vw(10);
+        border-bottom: 1px solid #000;
+        border-right: 1px solid #000;
+        position: absolute;
+        top: 50%;
+        right: vw(26);
+        transform: translateY(-60%) rotate(45deg);
+      }
+      .years_select {
+        width: 100%;
+        height: vw(70);
+        background-color: $gray;
+        font-size: vw(26);
+        text-align: center;
+      }
+    }
+  }
+  .anotation {
+    font-size: vw(24);
+    color: #555555;
+    margin-top: vw(30);
+  }
+  .more_button_wrapper {
+    width: 100%;
+    margin-top: vw(70);
+    display: flex;
+    justify-content: center;
+
+    .more_button {
+      width: vw(200);
+      height: vw(70);
+      font-size: vw(26);
+      text-align: center;
+      background-color: #000;
+      color: #fff;
+      border-radius: 8%;
+    }
+  }
+
+  .movies_wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    .movie {
+      width: 47%;
+      flex-shrink: 0;
+      padding: vw(30) 0 vw(70);
+      margin-top: vw(100);
+      background-color: $gray;
+    }
+  }
+}
+
+// アニメーション
+
+// PC
+@media screen and (min-width: ($BREAKPOINT)){
+  .movies {
+  }
+
+  // hover
+}

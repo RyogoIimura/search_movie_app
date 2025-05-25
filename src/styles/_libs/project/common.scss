@@ -1,33 +1,11 @@
+@forward '../../_base/reset.scss';
+@forward '../../_base/base.scss';
+
 @use '../setting/mixin' as *;
 @use '../../_base/project' as *;
 
 // レイアウト
 @media screen and (min-width: ($BREAKPOINT)){
-}
-
-// font
-@mixin notoJpR {
-  font-family: "Noto Sans JP", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-.notoJpR {
-  @include notoJpR;
-}
-@mixin notoJpB {
-  font-family: "Noto Sans JP", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-.notoJpB {
-  @include notoJpB;
-}
-@mixin interB {
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
-}
-.interB {
-  @include interB;
 }
 
 // keyframes
