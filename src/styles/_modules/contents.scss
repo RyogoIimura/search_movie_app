@@ -1,0 +1,14 @@
+@use '../_base/setting' as *;
+
+.contents {
+}
+
+// アニメーション
+
+// PC
+@media screen and (min-width: ($BREAKPOINT)){
+  .contents {
+  }
+
+  // hover
+}

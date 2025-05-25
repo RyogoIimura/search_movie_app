@@ -1,0 +1,44 @@
+@use './project' as *;
+
+html{
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings : "palt";
+}
+body{
+  *{
+    box-sizing: border-box;
+  }
+
+  .wrapper {
+    overflow: hidden;
+  }
+}
+
+a{
+  text-decoration: inherit;
+  color: inherit;
+  display:block;
+  width: 100%;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+img, video, svg{
+  display: block;
+  width: 100%;
+}
+svg {
+  overflow: visible;
+}
+
+.pc{
+  display: none!important;
+}
+
+// responsive
+@media screen and (min-width: ($BREAKPOINT)){
+  .pc{
+    display: block!important;
+  }
+  .sp{
+    display: none!important;
+  }
+}

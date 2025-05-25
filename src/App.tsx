@@ -15,7 +15,6 @@ function App() {
     const newMovies = await getMovies(key, count);
     setMovies([...movies, ...newMovies]);
     setCount(count+1);
-    setSortMovies(useSortMovies(movies,keyWordRef,releaseDate))
   }
   const loadmovieGenre = async () => {
     const movieGenre = await getMovieCategory(key);
@@ -49,10 +48,7 @@ function App() {
 
       <select
         name="release_date"
-        onChange={(e) => {
-          setReleaseDate(e.target.value);
-          setSortMovies(useSortMovies(movies,keyWordRef,e.target.value))
-        }}
+        onChange={(e) => setReleaseDate(e.target.value)}
       >
         <option value="">公開年</option>
         <option value="2020">2020</option>
