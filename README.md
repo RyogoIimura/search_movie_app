@@ -11,6 +11,7 @@ https://search-movie-app-beta.vercel.app/
 # 主なライブラリ
 react: ^19.1.0
 eslint: ^9.25.0,
+prettier": ^3.5.3,
 sass: ^1.89.0,
 typescript: ^5.8.3,
 vite: ^6.3.5
