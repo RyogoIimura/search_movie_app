@@ -1,30 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { getMovies, getMovieCategory } from './api/api';
 import { MovieType, MovieGenreType } from './types/types';
 import Movie from './components/Movie';
+import { getMovies, getMovieCategory } from './hooks/fetchMoviesFunc';
 import { sortMoviesFunc } from './hooks/sortMoviesFunc';
 import styles from './styles/_modules/movies.module.scss';
 
 function App() {
-  const key = import.meta.env.VITE_API_KEY;
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [movieGenre, setmovieGenre] = useState<MovieGenreType[]>([]);
   const [count, setCount] = useState<number>(1);
 
   const loadMovie = async () => {
-    const newMovies = await getMovies(key, count);
+    const newMovies = await getMovies(count);
     setMovies([...movies, ...newMovies]);
     setCount(count + 1);
   };
   const loadmovieGenre = async () => {
-    const movieGenre = await getMovieCategory(key);
+    const movieGenre = await getMovieCategory();
     setmovieGenre(movieGenre);
   };
   useEffect(() => {
     loadMovie();
     loadmovieGenre();
-  }, [key]);
+  }, []);
 
   // キーワード検索、公開年検索
   const [sortMovies, setSortMovies] = useState<MovieType[]>([]);
