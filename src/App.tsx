@@ -115,16 +115,10 @@ function App() {
               もっと見る
             </button>
           ) : (
-            <>
-            </>
+            <></>
           )
         ) : (
-          <button
-            className={`${styles.more_button} ${styles.notoJpB}`}
-            onClick={() => loadMovie()}
-          >
-            もっと見る
-          </button>
+          <></>
         )}
       </div>
     </div>
