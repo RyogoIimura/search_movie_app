@@ -1,5 +1,5 @@
 
-export const getMovies = async (key: string, count: number) => {
+export const getMovies = async (key: string | null, count: number) => {
   // 開発
   if( key ){
     try {
@@ -21,7 +21,7 @@ export const getMovies = async (key: string, count: number) => {
   }
 };
 
-export const getMovieCategory = async (key: string) => {
+export const getMovieCategory = async (key: string | null) => {
   // 開発
   if( key ){
     try {
