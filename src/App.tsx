@@ -20,7 +20,6 @@ function App() {
   };
   const loadmovieGenre = async () => {
     const movieGenre = await getMovieCategory(key);
-    console.log(movieGenre)
     setmovieGenre(movieGenre);
   };
   useEffect(() => {

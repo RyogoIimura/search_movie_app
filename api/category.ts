@@ -18,7 +18,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const data = await response.json();
-    res.status(200).json(data.results);
+    res.status(200).json(data.genres);
   } catch (error) {
     console.error('category', error);
     res.status(500).json({ error: 'Failed to fetch category' });
