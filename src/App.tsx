@@ -104,25 +104,29 @@ function App() {
         )}
       </ul>
 
-      {sortMovies.length === 0 ? (
-        !keyWordRef.current ||
-        (!keyWordRef.current.value && releaseDate === '') ? (
-          <>
-          </>
+      <div className={styles.more_button_wrapper}>
+        {sortMovies.length === 0 ? (
+          !keyWordRef.current ||
+          (!keyWordRef.current.value && releaseDate === '') ? (
+            <button
+              className={`${styles.more_button} ${styles.notoJpB}`}
+              onClick={() => loadMovie()}
+            >
+              もっと見る
+            </button>
+          ) : (
+            <>
+            </>
+          )
         ) : (
-          <>
-          </>
-        )
-      ) : (
-        <div className={styles.more_button_wrapper}>
           <button
             className={`${styles.more_button} ${styles.notoJpB}`}
             onClick={() => loadMovie()}
           >
             もっと見る
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
