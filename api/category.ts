@@ -10,7 +10,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=ja-JP`,
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=ja-JP`
     );
 
     if (!response.ok) {
