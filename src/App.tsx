@@ -7,17 +7,19 @@ import { sortMoviesFunc } from './hooks/sortMoviesFunc';
 import styles from './styles/_modules/movies.module.scss';
 
 function App() {
+  let key: string | null = null;
+  if( process.env.NODE_ENV === 'development' ) key = import.meta.env.VITE_API_KEY
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [movieGenre, setmovieGenre] = useState<MovieGenreType[]>([]);
   const [count, setCount] = useState<number>(1);
 
   const loadMovie = async () => {
-    const newMovies = await getMovies(count);
+    const newMovies = await getMovies(key,count);
     setMovies([...movies, ...newMovies]);
     setCount(count + 1);
   };
   const loadmovieGenre = async () => {
-    const movieGenre = await getMovieCategory();
+    const movieGenre = await getMovieCategory(key);
     setmovieGenre(movieGenre);
   };
   useEffect(() => {
@@ -102,14 +104,25 @@ function App() {
         )}
       </ul>
 
-      <div className={styles.more_button_wrapper}>
-        <button
-          className={`${styles.more_button} ${styles.notoJpB}`}
-          onClick={() => loadMovie()}
-        >
-          もっと見る
-        </button>
-      </div>
+      {sortMovies.length === 0 ? (
+        !keyWordRef.current ||
+        (!keyWordRef.current.value && releaseDate === '') ? (
+          <>
+          </>
+        ) : (
+          <>
+          </>
+        )
+      ) : (
+        <div className={styles.more_button_wrapper}>
+          <button
+            className={`${styles.more_button} ${styles.notoJpB}`}
+            onClick={() => loadMovie()}
+          >
+            もっと見る
+          </button>
+        </div>
+      )}
     </div>
   );
 }
