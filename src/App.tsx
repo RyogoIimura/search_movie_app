@@ -2,20 +2,27 @@ import { useEffect, useRef, useState } from 'react';
 
 import { MovieType, MovieGenreType } from './types/types';
 import Movie from './components/Movie';
-import { getMovies, getMovieCategory } from './hooks/fetchMoviesFunc';
-import { sortMoviesFunc } from './hooks/sortMoviesFunc';
+import { getMovies, getMovieCategory, getSortMovies } from './hooks/fetchMoviesFunc';
 import styles from './styles/_modules/movies.module.scss';
+import { sortKeyWord } from './hooks/sortKeyWord';
 
 function App() {
   let key: string | null = null;
   if( process.env.NODE_ENV === 'development' ) key = import.meta.env.VITE_API_KEY
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [movieGenre, setmovieGenre] = useState<MovieGenreType[]>([]);
-  const [count, setCount] = useState<number>(1);
+  const [count, setCount] = useState<number>(0);
 
+  // 20件取得、ジャンル表示
   const loadMovie = async () => {
     const newMovies = await getMovies(key,count);
     setMovies([...movies, ...newMovies]);
+    if( keyWordRef.current && keyWordRef.current.value ){
+      const newSortMovies = sortKeyWord([...movies, ...newMovies],keyWordRef);
+      setSortMovies(newSortMovies)
+    } else {
+      setSortMovies([])
+    }
     setCount(count + 1);
   };
   const loadmovieGenre = async () => {
@@ -27,13 +34,33 @@ function App() {
     loadmovieGenre();
   }, []);
 
-  // キーワード検索、公開年検索
   const [sortMovies, setSortMovies] = useState<MovieType[]>([]);
+  // キーワード検索
   const keyWordRef = useRef<HTMLInputElement | null>(null);
+  const sortKeyWordMovies = () => {
+    if( keyWordRef.current && keyWordRef.current.value ){
+      if( releaseDate ) sortReleaseMovies();
+      else setSortMovies(sortKeyWord(movies,keyWordRef))
+    }
+    else setSortMovies([]);
+  };
+  // 公開年検索
   const [releaseDate, setReleaseDate] = useState<string>('');
+  const sortReleaseMovies = async () => {
+    const newReleaseMovies = await getSortMovies(key,count,releaseDate);
+    if( releaseDate ){
+      if( keyWordRef.current && keyWordRef.current.value ){
+        const newSortMovies = sortKeyWord(newReleaseMovies,keyWordRef);
+        setSortMovies(newSortMovies)
+      }
+      else setSortMovies(newReleaseMovies);
+      console.log(releaseDate);
+    }
+    else setSortMovies([]);
+  };
   useEffect(() => {
-    setSortMovies(sortMoviesFunc(movies, keyWordRef, releaseDate));
-  }, [movies, releaseDate]);
+    if( releaseDate != "" ) sortReleaseMovies()
+  }, [releaseDate]);
 
   return (
     <div className={`${styles.movies} ${styles.notoJpR}`}>
@@ -49,9 +76,7 @@ function App() {
           <button
             className={`${styles.keyword_button} ${styles.notoJpB}`}
             type="button"
-            onClick={() =>
-              setSortMovies(sortMoviesFunc(movies, keyWordRef, releaseDate))
-            }
+            onClick={() => sortKeyWordMovies()}
           >
             検索
           </button>
